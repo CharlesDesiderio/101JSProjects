@@ -1,0 +1,29 @@
+input {
+    padding: 20px;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+}
+
+.total-progress {
+    width: 80%;
+    height: 50px;
+    margin: auto;
+}
+
+.prog-bar {
+    width: 0%;
+    height: 100%;
+    background-color: red;
+    transition: .5s;
+    transition-timing-function: cubic-bezier(.01,.19,.98,.73);
+}
+
+.counter {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+}
