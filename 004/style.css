@@ -1,0 +1,17 @@
+.prod {
+
+}
+
+.item {
+    width: 200px;
+    margin: 25px;
+}
+
+.car {
+    background-color: pink;
+    width: 1000px;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
