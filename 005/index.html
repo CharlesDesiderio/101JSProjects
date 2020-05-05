@@ -13,22 +13,22 @@
 
 <body>
 
-    <h1>Nothing but CORS problems here. Gonna start fresh tomorrow (maybe) and look for a new API. I found a Jeapordy API (currently in the JS code) which I may use, though...</h1>
-
-    <div class="score">0</div>
-
-    <h1>Select category:</h1>
-    <div class="category">
-        <select id="categories">
-            <option value="any">Any Category</option>
-        </select>
-        <button onCLick="startGame()" id="start">Start</button>
+    <div class="points">Your current score:
+        <span class="score">0</span>
     </div>
 
+
     <div class="game">
+        <div class="category"></div>
+        <div class="value"></div>
+        <div class="question"></div>
+        <div class="answer"><input id="myAnswer" /><button onClick="submitGuess()">Submit</button></div>
+        <div class="nextQuestion"><button onClick="startGame()">Next question</button></div>
+        <div class="message"></div>
+    </div>
 
-
-
+    <div class="fp">
+        <p>Fine print: This is a quick and dirty Jeopardy clone. It has a few issues, like the Regex matching will fail if you use characters (like question marks) that regex can parse. Also, I'm doing a simple match on the typed answer. There's nothing like minimum percentage of match, so if you were to just type 'e' as your answer, there's a good chance you'll be marked correct. Any solutions have issues and won't be 100% accurate. Best thing to do would be to remove the input field and use this as a game with multiple people where you manually select if your answer was right or wrong. But ehh, I've wasted enough time on this project.</p>
     </div>
 
 </body>

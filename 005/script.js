@@ -1,37 +1,43 @@
+let currentValue = 0;
+let currentScore = 0
+let currentGuess = "";
+let currentAnswer = "";
 
-let categorySelect = 0
-
-let startGame = () => {
-    // categorySelect = document.getElementById("categories").value;
-    // let whichApi = `https://opentdb.com/api.php&category=` + categorySelect;
-    // console.log(whichApi, {
-    //     mode: 'no-cors'
-    // });
-    fetch('https://jservice.io/api/random')
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+let submitGuess = () => {
+    currentGuess = document.getElementById("myAnswer").value;
+    let re = new RegExp(currentGuess, 'gi')
+    if (currentAnswer.match(re)) {
+        currentScore += currentValue;
+        document.querySelector(".score").innerHTML = currentScore;
+        document.querySelector(".message").innerHTML = `Correct! The full question was ${currentAnswer}.`
+    } else {
+        currentScore -= currentValue;
+        document.querySelector(".score").innerHTML = currentScore;
+        document.querySelector(".message").innerHTML = `No, sorry. The question we're looking for was ${currentAnswer}.`
+    }
+    document.getElementById("myAnswer").value = '';
+    document.querySelector(".answer").style.display = 'none';
+    document.querySelector(".nextQuestion").style.display = 'block';
 }
 
-fetch('https://opentdb.com/api_category.php')
+let startGame = () => {
+        fetch('https://jservice.io/api/random')
     .then((response) => {
         return response.json();
     })
     .then((data) => {
-        data.trivia_categories.forEach((x) => {
-            document.getElementById("categories").innerHTML += `
-            <option value="${x.id}">${x.name}</option>
-            `
-        })
+        document.querySelector(".category").innerHTML = data[0].category.title.toUpperCase();
+        document.querySelector(".question").innerHTML = data[0].question;
+        document.querySelector(".value").innerHTML = "$" + data[0].value;
+        currentAnswer = data[0].answer;
+        currentValue = data[0].value;
     })
     .catch((err) => {
         console.log(err);
     })
+    document.querySelector(".answer").style.display = 'block';
+    document.querySelector(".message").innerHTML = '';
+    document.querySelector(".nextQuestion").style.display = 'none';
+}
 
-    
+startGame();
